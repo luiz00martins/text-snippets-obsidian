@@ -7,6 +7,7 @@ import {
   PluginSettingTab,
   Setting,
 } from 'obsidian';
+import { expandDateSymbol } from './date';
 
 export default class TextSnippets extends Plugin {
 	settings: TextSnippetsSettings;
@@ -198,6 +199,7 @@ export default class TextSnippets extends Plugin {
 		var newStr = "";
 
 		newStr = this.findSnippet(editor, cursorOrig, cursor);
+		newStr = expandDateSymbol(newStr, this.settings.dateSymbol);
 		cursor = editor.getCursor('from');
 
 		//proceed Tab and Spacebar
@@ -329,6 +331,7 @@ interface TextSnippetsSettings {
 	newlineSymbol: string;
 	stopSymbol: string;
 	pasteSymbol: string;
+	dateSymbol: string;
 	useTab: boolean;
 	useSpace: boolean;
 	wordDelimiters: string;
@@ -343,6 +346,7 @@ const DEFAULT_SETTINGS: TextSnippetsSettings = {
 	newlineSymbol: '$nl$',
 	stopSymbol: "$tb$",
 	pasteSymbol: "$pst$",
+	dateSymbol: "$date$",
 	useTab: true,
 	useSpace: false,
 	wordDelimiters: "$()[]{}<>,.!?;:\'\"\\/",
@@ -441,6 +445,22 @@ class TextSnippetsSettingsTab extends PluginSettingTab {
 					value = '$pst$';
 				}
 				this.plugin.settings.pasteSymbol = value;
+				await this.plugin.saveSettings();
+			})
+			);
+
+		new Setting(containerEl)
+		.setName('Current date symbol')
+		.setDesc('Symbol replaced with the current local date in YYYY-MM-DD format when a snippet expands.')
+		.setClass("text-snippets-date")
+		.addTextArea((text) => text
+			.setPlaceholder('$date$')
+			.setValue(this.plugin.settings.dateSymbol)
+			.onChange(async (value) => {
+				if (value == '') {
+					value = '$date$';
+				}
+				this.plugin.settings.dateSymbol = value;
 				await this.plugin.saveSettings();
 			})
 			);

@@ -1,14 +1,15 @@
 {
-  "name": "text-snippets-obsidian",
-  "version": "0.1.1",
-  "description": "Plugin for using snippets for for faster typing",
+  "name": "text-snippets-dynamic",
+  "version": "0.2.0",
+  "description": "Obsidian text snippets with dynamic local-date expansion",
   "main": "main.js",
   "scripts": {
     "dev": "rollup --config rollup.config.js -w",
-    "build": "rollup --config rollup.config.js"
+    "build": "rollup --config rollup.config.js",
+    "test": "tsc date.ts --target ES2018 --module commonjs --skipLibCheck --outDir .test-build && node --test test/date.test.cjs"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ariana Khitrova and Luiz Martins",
   "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^19.0.0",

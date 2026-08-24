@@ -1,6 +1,4 @@
-# npm
-node_modules
-
-# build
+node_modules/
 main.js
 data.json
+.test-build/

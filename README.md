@@ -1,8 +1,8 @@
-# Obsidian Text Snippets Plugin
+# Obsidian Text Snippets Dynamic Plugin
 
 This is a plugin for Obsidian (https://obsidian.md).
 
-It allows you to replace text templates for faster typing, create your own snippets almost like in many text editors and IDE. 
+This fork of Text Snippets adds dynamic values to the original fast text-template expansion workflow.
 
 **Live Preview support**: ```check the toggle in plugin settings before using and restart plugin in Options > Community plugins```.
 
@@ -17,6 +17,7 @@ You can use the shortcut (default `CTRL/CMD + Tab`) or the command `Run snippet 
 - Use ```$nl$``` to add line break in multiline snippet
 - ```$nl$``` ignores next line break in _Snippets_ settings, if the snippet ends with ```$end$```, add additional newline
 - Use ```$tb$``` to add a tabstop for the cursor to jump to (don`t use together with ```$end$```)
+- Use ```$date$``` to insert the current local date in ```YYYY-MM-DD``` format at expansion time
 - Trigger the snippet shortcut without any eligible expansion to jump to the next tabstop
 - When enabling `Tab` as the shortcut, only if there are no eligilbe expansions nor jumps the, a normal `Tab` will be inserted
 
@@ -24,11 +25,11 @@ You can use the shortcut (default `CTRL/CMD + Tab`) or the command `Run snippet 
 
 ## How to install
 
-### In Obsidian app
+### With BRAT
 
-In Obsidian go to `Settings > Third-party plugins > Community Plugins > Browse` and search for `Text Snippets`.
+Install BRAT from Obsidian's Community Plugins browser, then add this repository as a beta plugin and track its latest release.
 
 ### Manually installing the plugin
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/text-snippets-obsidian/`.
+- Copy `main.js`, `styles.css`, and `manifest.json` to `VaultFolder/.obsidian/plugins/text-snippets-dynamic/`.
 
